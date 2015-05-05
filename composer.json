@@ -1,0 +1,22 @@
+{
+  "name": "shanecullinane/discogs",
+  "description": "It's for grabbing data from discogs. It's also my first attempt at a package. Trying to learn. Approach with caution!",
+  "authors": [
+    {
+      "name": "Shane Cullinane",
+      "email": "shane@cosmictones.org"
+    }
+  ],
+  "minimum-stability": "dev",
+  "keywords": ["discogs", "music"],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4.0",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "shanecullinane\\Discogs\\": "src/"
+    }
+  }
+}
