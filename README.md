@@ -1,19 +1,21 @@
-# Discogs Getter
+# Discogs
 
 ## Overview
 
-A work-in-progress package for interacting with the Discogs API. I'm developing it with Laravel, basically as an excuse
-to find out how to make packages.
+A work-in-progress PHP package for interacting with the Discogs API.
+
+Artist, Inventory, Label, MasterRelease, Release and Search resources are largely functional. More to do.
 
 ## Install
 
 **Laravel**
-* require "shanecullinane/Discogs": "0.1.1"
+* require "shanecullinane/discogs": "@dev" in your composer.json
+* composer update
 * add the service provider to the 'provides' array  in config/app.php
 
     'shanecullinane\Discogs\DiscogsServiceProvider',
 
-* run composer dump-autoload and/or php artisan dump-autoload
+* run composer dump-autoload
 * set the following variables in your .env file
 
     DISCOGS_URL=https://api.discogs.com/
@@ -22,8 +24,10 @@ to find out how to make packages.
     DISCOGS_USER_AGENT='user-agent: your-app +https://example.com/myprofilepage'
 
 **Not Laravel**
-
-If you're not using laravel figure out some way to get the discogs url, your api token, user agent and accept-header values into the Config class.
+* require "shanecullinane/discogs": "@dev" in your composer.json
+* composer update
+* composer dump-autoload
+* figure out some way to get the discogs url, your api token, user agent and accept-header values into the Config class (src/Config/Config.php).
 
 
 **Personal settings**
@@ -166,8 +170,8 @@ If you are authenticated as the inventory owner you will get additional weight, 
 
 ## Versions
 
-**v0.1.0** : 30/04/2015 :
+**v0.1.0** : 05/05/2015 :
 * Artist, Inventory, Label, MasterRelease, Release and Search resources are largely functional.
 
-**v0.1.1** : 01/05/2015 :
-* edited psr-4 in composer.json (service provider not found in laravel)
+**v0.1.1** : 05/05/2015 :
+* updated README a little bit
