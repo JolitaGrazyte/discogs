@@ -26,19 +26,47 @@ class Config implements ConfigInterface{
 
     public function __construct() {
 
+        /*
+         * get defined settings
+         */
+        if (defined('DISCOGS_URL')) {
+            $this->DISCOGS_URL = DISCOGS_URL;
+        }
+
+        if (defined('DISCOGS_TOKEN')) {
+            $this->DISCOGS_TOKEN = DISCOGS_TOKEN;
+        }
+
+        if (defined('DISCOGS_DEFAULT_ACCEPT_HEADER')) {
+            $this->DISCOGS_DEFAULT_ACCEPT_HEADER = DISCOGS_DEFAULT_ACCEPT_HEADER;
+        }
+
+        if (defined('DISCOGS_USER_AGENT')) {
+            $this->DISCOGS_USER_AGENT = DISCOGS_USER_AGENT;
+        }
+
+
+        /*
+         * if .env settings are set use those
+         */
         if (class_exists('\Config')) {
 
-            $this->DISCOGS_URL                          = env('DISCOGS_URL');
-            $this->DISCOGS_TOKEN                        = env('DISCOGS_TOKEN');
-            $this->DISCOGS_DEFAULT_ACCEPT_HEADER        = env('DISCOGS_DEFAULT_ACCEPT_HEADER');
-            $this->DISCOGS_USER_AGENT                   = env('DISCOGS_USER_AGENT');
+            if ( env('DISCOGS_URL')){
+                $this->DISCOGS_URL = env('DISCOGS_URL');
+            }
 
-        } else {
+            if (env('DISCOGS_TOKEN')) {
+                $this->DISCOGS_TOKEN = env('DISCOGS_TOKEN');
+            }
 
-            $this->DISCOGS_URL                          = '';
-            $this->DISCOGS_TOKEN                        = '';
-            $this->DISCOGS_DEFAULT_ACCEPT_HEADER        = '';
-            $this->DISCOGS_USER_AGENT                   = '';
+            if (env('DISCOGS_DEFAULT_ACCEPT_HEADER')) {
+                $this->DISCOGS_DEFAULT_ACCEPT_HEADER = env('DISCOGS_DEFAULT_ACCEPT_HEADER');
+            }
+
+            if (env('DISCOGS_USER_AGENT')) {
+                $this->DISCOGS_USER_AGENT = env('DISCOGS_USER_AGENT');
+            }
+
         }
 
     }

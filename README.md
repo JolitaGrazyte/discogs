@@ -23,12 +23,18 @@ Artist, Inventory, Label, MasterRelease, Release and Search resources are largel
     DISCOGS_DEFAULT_ACCEPT_HEADER='HTTP_ACCEPT: application/vnd.discogs.v2.plaintext+json'
     DISCOGS_USER_AGENT='user-agent: your-app +https://example.com/myprofilepage'
 
+You can also define these settings (e.g. define ('DISCOGS_URL', 'https://api.discogs.com/'), the .env settings will override defined settings if both are used.
+
 **Not Laravel**
 * require "shanecullinane/discogs": "@dev" in your composer.json
 * composer update
 * composer dump-autoload
-* figure out some way to get the discogs url, your api token, user agent and accept-header values into the Config class (src/Config/Config.php).
+* Define the following settings somewhere in your app
 
+    define ('DISCOGS_URL', 'https://api.discogs.com/')
+    define ('DISCOGS_TOKEN', 'your_discogs_token')
+    define (DISCOGS_DEFAULT_ACCEPT_HEADER', 'HTTP_ACCEPT: application/vnd.discogs.v2.plaintext+json')
+    define ('DISCOGS_USER_AGENT', 'user-agent: your-app-name +https://example.com/myprofilepage')
 
 **Personal settings**
 
@@ -175,3 +181,6 @@ If you are authenticated as the inventory owner you will get additional weight, 
 
 **v0.1.1** : 05/05/2015 :
 * updated README a little bit
+
+**v0.1.2** : 08/05/2015
+Changed Config class to check for defined discogs settings as well as those set in .env file
