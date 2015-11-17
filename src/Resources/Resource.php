@@ -61,6 +61,8 @@ abstract class Resource implements ResourceInterface {
         return $this;
     }
 
+
+
     /**
      * Set additional search parameters - see http://www.discogs.com/developers/#page:database,header:database-search
      *
@@ -76,6 +78,8 @@ abstract class Resource implements ResourceInterface {
 
     }
 
+
+
     /**
      * Append personal authentication token to api call.
      * Can't use addParam as it alters values
@@ -85,6 +89,7 @@ abstract class Resource implements ResourceInterface {
         $this->params .= "&". "token=$this->token";
         return $this;
     }
+
 
 
     /**
@@ -103,6 +108,7 @@ abstract class Resource implements ResourceInterface {
         return $this;
 
     }
+
 
 
     /**
@@ -126,10 +132,29 @@ abstract class Resource implements ResourceInterface {
      */
     public function get() {
 
-        $this->_prepare();
-        return json_decode($this->response);
+        return json_decode($this->getResponse());
 
     }
+
+
+
+    /**
+     * Prepares the query url for the api, triggers the caller classes/functions and returns the response from the apo
+     *
+     * @return String discogs api response in json format
+     */
+    protected function getResponse() {
+
+        if (!isset($this->response)) {
+            $this->addToken();
+            $this->_prepare();
+        }
+
+        return $this->response;
+
+    }
+
+
 
     /**
      * Return resource as JSON
@@ -138,8 +163,7 @@ abstract class Resource implements ResourceInterface {
      */
     public function json() {
 
-        $this->_prepare();
-        return $this->response;
+        return $this->getResponse();
 
     }
 
@@ -211,23 +235,6 @@ abstract class Resource implements ResourceInterface {
     }
 
 
-    /**
-     * Set the Grabber that
-     * @param GrabberInterface $grabber
-     * @throws \Exception
-     */
-    public function setGrabber($grabber) {
-
-        if ($grabber instanceof GrabberInterface) {
-
-            $this->grabber = $grabber;
-
-        } else { throw new \Exception($grabber . " is not an instance of GrabberInterface"); }
-    }
-
-    public function setUrl($url) {
-        $this->url = $url;
-    }
 
 
 }

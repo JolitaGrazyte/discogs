@@ -44,7 +44,6 @@ class Inventory extends Resource{
     public function find($username) {
 
         $this->url = str_replace('{username}', $username, $this->url);
-        $this->addToken();
         return $this;
     }
 

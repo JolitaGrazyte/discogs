@@ -29,7 +29,6 @@ class Search extends Resource {
     public function find($q) {
 
         $q = $this->formatParamValue($q);
-        $this->addToken();
         $this->addParam('q', $q);
         return $this;
 

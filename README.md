@@ -162,9 +162,9 @@ If you are not authenticated as the inventory owner, only items that have a stat
 If you are authenticated as the inventory owner you will get additional weight, format_quantity, external_id, and location keys."*
 
     $discogs                = new Discogs('Inventory');
-    $inventory              = $discogs->find('Shane477');               // returns a Search class with search terms set
-    $listings               = $inventory->get();                        // returns label profile as PHP stdClass
-    $listings_pagination    = $listings->perPage(5)->page(1)->get();    // returns label profile as json
+    $inventory              = $discogs->find('Shane477');                       // returns a Search class with search terms set
+    $listings               = $inventory->addParam('status', 'sold')->get();    // returns label profile as PHP stdClass.
+    $listings_pagination    = $inventory->perPage(5)->page(1)->get();           // returns label profile as json
 
 
 ## To-Do
@@ -176,11 +176,14 @@ If you are authenticated as the inventory owner you will get additional weight, 
 
 ## Versions
 
-**v0.1.0** : 05/05/2015 :
-* Artist, Inventory, Label, MasterRelease, Release and Search resources are largely functional.
+**v0.1.3** : 17/11/2015 :
+* Added personal user token to all requests to discogs - images should now be returned if the token is valid.
+
+**v0.1.2** : 08/05/2015
+Changed Config class to check for defined discogs settings as well as those set in .env file
 
 **v0.1.1** : 05/05/2015 :
 * updated README a little bit
 
-**v0.1.2** : 08/05/2015
-Changed Config class to check for defined discogs settings as well as those set in .env file
+**v0.1.0** : 05/05/2015 :
+* Artist, Inventory, Label, MasterRelease, Release and Search resources are largely functional.
