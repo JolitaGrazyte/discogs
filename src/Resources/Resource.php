@@ -81,18 +81,6 @@ abstract class Resource implements ResourceInterface {
 
 
     /**
-     * Append personal authentication token to api call.
-     * Can't use addParam as it alters values
-     */
-    public function addToken(){
-
-        $this->params .= "&". "token=$this->token";
-        return $this;
-    }
-
-
-
-    /**
      * Set the identifer for the requested resource e.g. a release or artist id, a search string
      * Returns an instance of the relevant Resource child class
      *
@@ -146,7 +134,7 @@ abstract class Resource implements ResourceInterface {
     protected function getResponse() {
 
         if (!isset($this->response)) {
-            $this->addToken();
+            $this->addParam('token', $this->token);
             $this->_prepare();
         }
 

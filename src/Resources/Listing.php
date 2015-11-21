@@ -17,7 +17,6 @@ class Listing extends Resource {
     public function find($listingId) {
 
         $this->url = str_replace('{listing_id}', $listingId, $this->url);
-        $this->addToken();
         return $this;
     }
 

@@ -141,7 +141,7 @@ http://www.discogs.com/developers/#page:database,header:database-all-label-relea
 ### Search
 *"Issue a search query to our database. This endpoint accepts pagination parameters.
 Authentication (as any user) is required."*
-
+http://www.discogs.com/developers/#page:database,header:database-search
 
 **You must have set your personal discogs api token to use the Search resource.**
 
@@ -152,7 +152,7 @@ Authentication (as any user) is required."*
     $results_pagination     = $search->perPage(5)->page(1)->json();     // returns label profile as json
 
 
-## Marketplace
+### Marketplace
 
 ## Inventory
 *"Returns the list of listings in a user’s inventory. Accepts Pagination parameters.
@@ -166,6 +166,13 @@ If you are authenticated as the inventory owner you will get additional weight, 
     $listings               = $inventory->addParam('status', 'sold')->get();    // returns label profile as PHP stdClass.
     $listings_pagination    = $inventory->perPage(5)->page(1)->get();           // returns label profile as json
 
+## Listing
+*"View the data associated with a listing.
+If the authorized user is the listing owner the listing will include the weight, format_quantity, external_id, and location keys."*
+
+    $discogs                = new Discogs('Listing');
+    $listing                = $discogs->find(238685631);
+    $data                   = $listing->get();
 
 ## To-Do
 * finish off implementing other resources
@@ -175,6 +182,11 @@ If you are authenticated as the inventory owner you will get additional weight, 
 
 
 ## Versions
+
+**v0.1.4** : 21/11/2015
+* You can get a listing now (edit and delete are not yet implemented)
+* http://www.discogs.com/developers/#page:marketplace,header:marketplace-listing
+* some small tidying
 
 **v0.1.3** : 17/11/2015 :
 * Added personal user token to all requests to discogs - images should now be returned if the token is valid.
